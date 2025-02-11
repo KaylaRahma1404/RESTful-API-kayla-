@@ -2,19 +2,17 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    protected $fillable = [
-        'product_id',
-        'quantity',
-        'total_price',
-    ];
+    use HasFactory;
 
-    public function product()
+    protected $fillable = ['product_id', 'customer_id', 'quantity', 'status'];
+
+    public function customer()
     {
-        return $this->belongsTo(Product::class); // Asumsi ada model Product
+        return $this->belongsTo(Customer::class);
     }
-
 }
